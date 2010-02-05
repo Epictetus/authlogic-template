@@ -1,0 +1,12 @@
+<h1>Hello, <%=h @user.login %>!</h1>
+
+<p>
+  あなたは<%=h @user.login_count -%>回目のログインです。<br>
+  <% if @user.login_count > 1 -%>
+  前回は<%=h @user.last_login_at -%>にログインしました。
+  <% end -%>
+</p>
+
+<%= link_to '編集', edit_user_path %> |
+<%= link_to '削除', user_path, :method => :delete %> |
+<%= link_to 'ログアウト', user_session_path, :method => :delete %>

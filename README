@@ -1,0 +1,29 @@
+1. Userモデルの作成
+
+$ script/generate scaffold user login:string crypted_password:string password_salt:string persistence_token:string login_count:integer current_login_at:datetime last_login_at:datetime
+
+※その他の属性情報を付与したいときはUserのカラムを増やすのではなくて、
+　Profileテーブルなどを作成して関連づけした方がいいかも。
+
+2. migrateする
+
+$ rake db:migrate
+
+3. 対象プロジェクトにファイル群をコピー
+
+$ cp app config /path/to/project
+
+4. routes.rbとapplication_controller.rbを編集する
+
+routes.rbとapplication_controller.rbに関しては
+既存プロジェクトのファイルを上書きしてしまうと問題が起きる可能性が高いので、
+うっかり上書きしてしまわないようにファイル名を変更してある。
+
+routes.rb -> routes.rb.sample
+application_controller.rb -> routes.rb.sample
+
+手作業で修正すること。
+
+5. 動作確認
+
+うまくいけば、http://localhost:3000/user にアクセスするとログイン画面が表示される。
